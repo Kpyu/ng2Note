@@ -22,4 +22,17 @@ export class NoteService {
     var note = new Note('1', '1', '1', new Date(Date.now()), '1');
     return [note];
   }
+
+  saveNote(note: Note): void {
+
+  }
+
+  deleteNote(noteId: string): void {
+
+  }
+
+  searchNotes(params: string): Note[] {
+    var note = new Note('1', '1', '1', new Date(Date.now()), '1');
+    return [note];
+  }
 }
