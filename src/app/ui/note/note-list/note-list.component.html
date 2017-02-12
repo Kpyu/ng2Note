@@ -1,17 +1,16 @@
 <div class="list-wrapper">
   <div id="notes-list">
     <div id="list-header">
-      <div class="app-note-toolbar"></div>
+      <div class="app-note-toolbar" (noteFilter)="onFilterNotes($event)" (newNote)="onAddNote($event)"></div>
     </div>
     <!-- 渲染笔记列表 -->
-    <div class="container">
-      <div class="list-group">
-        <a *ngFor="let note of notes" class="list-group-item" href="javascript:;" [class.active]="selectedNote === note" (click)="onSelected(note)">
-          <h4 class="list-group-item-heading">
-            {{note.title.trim().substring(0,30)}}
-          </h4>
-        </a>
-      </div>
+    <div class="list-group" *ngIf="notes.length>0">
+      <a *ngFor="let note of notes" class="list-group-item" href="javascript:;" [class.active]="selectedNote === note" (click)="onSelected(note)">
+        <h4 class="list-group-item-heading" [innerHTML]="note.title|filter:filterText">
+        </h4>
+        <p>{{note.content.trim().substring(0,30)}}</p>
+      </a>
     </div>
+    <div class="space-text" *ngIf="!notes.length">无结果</div>
   </div>
 </div>

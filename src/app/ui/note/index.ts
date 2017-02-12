@@ -1,1 +1,1 @@
-export { NoteModule } from './note.module';
+export * from './note.module';

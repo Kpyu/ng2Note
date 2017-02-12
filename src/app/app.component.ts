@@ -9,7 +9,10 @@ export class AppComponent implements OnInit {
   public currentNote: Note;
 
   ngOnInit() {
-    sessionStorage.setItem('noteList', JSON.stringify([new Note('标题', '内容')]));
+    this.currentNote = this.currentNote || new Note('', '');
+    if (!sessionStorage.getItem('noteList')) {
+      sessionStorage.setItem('noteList', JSON.stringify([new Note('标题', '内容')]));
+    }
   }
 
   onNoteSelected(note: Note) {

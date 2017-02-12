@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from '../../../models';
-import { NoteService } from '../../../services';
+import { NoteService } from '../../../services/note-service';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: '.app-note-editor',
@@ -13,9 +13,9 @@ export class NoteEditorComponent implements OnInit {
   @Input() currentNote: Note;
 
   constructor(private api: NoteService) { }
-
   ngOnInit() {}
   onSave() {
+    debugger
     this.api.saveNote(this.currentNote);
   }
 }

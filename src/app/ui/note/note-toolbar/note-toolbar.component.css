@@ -1,0 +1,8 @@
+.tool-bar-wrapper{
+  width: 100%;
+  text-align: center;
+  padding: 1em
+} 
+.tool-bar-wrapper span.title{
+  line-height: 24px;
+}
