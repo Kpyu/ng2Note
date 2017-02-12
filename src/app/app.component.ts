@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Note } from './models';
+import { NoteListComponent } from './ui/note/note-list/note-list.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,6 +8,8 @@ import { Note } from './models';
 })
 export class AppComponent implements OnInit {
   public currentNote: Note;
+  @Output() listReload = new EventEmitter();
+  @ViewChild(NoteListComponent) private noteList: NoteListComponent;
 
   ngOnInit() {
     this.currentNote = this.currentNote || new Note('', '');
@@ -17,5 +20,10 @@ export class AppComponent implements OnInit {
 
   onNoteSelected(note: Note) {
     this.currentNote = note;
+  }
+  onNoteSaved(isSaved) {
+    if (isSaved) {
+      this.noteList.loadList();
+    }
   }
 }

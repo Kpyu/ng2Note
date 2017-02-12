@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Note } from '../../../models';
 import { NoteService } from '../../../services/note-service';
-
+import { ModalDirective } from 'ng2-bootstrap/modal';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: '.app-note-list',
@@ -13,17 +13,19 @@ export class NoteListComponent implements OnInit {
   notes: Note[];
   selectedNote: Note;
   filterText: string;
+  delId: string;
   @Output() noteSelected = new EventEmitter();
-
+  @ViewChild('childModal') public childModal: ModalDirective;
   constructor(private api: NoteService) { }
 
   ngOnInit() {
     this.loadList();
   }
-  loadList() {
+  public loadList() {
     this.notes = this.api.getNoteList();
-    this.selectedNote = this.notes[0];
+    this.selectedNote = this.notes[0] || new Note('', '');
     this.noteSelected.emit(this.selectedNote);
+
   }
   onSelected(note: Note) {
     this.selectedNote = note;
@@ -36,5 +38,25 @@ export class NoteListComponent implements OnInit {
   onFilterNotes(filterText) {
     this.filterText = filterText;
     this.notes = this.api.searchNotes(filterText) || [];
+  }
+  delNote(note, $event) {
+    $event.stopPropagation();
+    // debugger
+    this.delId = note.id;
+    this.childModal.show();
+
+  }
+  hideChildModal() {
+    this.childModal.hide();
+  }
+  doDelNote() {
+    this.api.deleteNote(this.delId);
+    this.loadList();
+    this.childModal.hide();
+  }
+  onNoteReload(isReload) {
+    if (isReload) {
+      this.loadList();
+    }
   }
 }

@@ -5,7 +5,7 @@ import { Note } from '../models';
 
 function removeByItem(arr: [any], item: any) {
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === item.id) {
+    if (arr[i].id === item.id) {
       arr.splice(i, 1);
       return;
     }
@@ -13,7 +13,7 @@ function removeByItem(arr: [any], item: any) {
 }
 function removeByItemId(arr: [any], id: any) {
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === id) {
+    if (arr[i].id === id) {
       arr.splice(i, 1);
       return;
     }

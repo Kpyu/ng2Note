@@ -1,4 +1,8 @@
-.list-group-item:last-child,
-.list-group-item:first-child {
+.list-group-item:last-child, .list-group-item:first-child {
   border-radius: 0;
+}
+.del-btn {
+  float: right;
+  margin-top: -10px;
+  cursor: pointer;
 }

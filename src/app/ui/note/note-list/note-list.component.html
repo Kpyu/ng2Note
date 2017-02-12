@@ -9,8 +9,28 @@
         <h4 class="list-group-item-heading" [innerHTML]="note.title|filter:filterText">
         </h4>
         <p>{{note.content.trim().substring(0,30)}}</p>
+        <i class="glyphicon glyphicon-trash del-btn" (click)="delNote(note,$event)"></i>
       </a>
     </div>
     <div class="space-text" *ngIf="!notes.length">无结果</div>
+  </div>
+</div>
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">提示</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        是否确定删除？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="hideChildModal()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="doDelNote()">确定</button>
+      </div>
+    </div>
   </div>
 </div>

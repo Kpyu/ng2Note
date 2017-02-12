@@ -3,7 +3,25 @@
     <i class="glyphicon glyphicon-floppy-save" (click)="onSave()"></i>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" name="" [(ngModel)]="currentNote.title"/>
-    <textarea class="form-group"  [(ngModel)]="currentNote.content" class="form-control" rows="3" placeholder="请输入内容"></textarea>
+    <input type="text" class="form-control" name="" [(ngModel)]="currentNote.title" />
+    <textarea class="form-group" [(ngModel)]="currentNote.content" class="form-control" rows="3" placeholder="请输入内容"></textarea>
+  </div>
+</div>
+<div bsModal #childAlertModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">提示</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        保存成功
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="hideChildModal()">确定</button>
+      </div>
+    </div>
   </div>
 </div>

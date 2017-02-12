@@ -10,8 +10,7 @@ export class filterTextPipe implements PipeTransform {
     let title;
     if (!value) {
       title = '无标题'
-    }
-    if (value && filterText) {
+    } else if (value && filterText) {
       title = value.replace(filterText, `<strong class="filter-text">${filterText}</strong>`);
     } else {
       title = value;

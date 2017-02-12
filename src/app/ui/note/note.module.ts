@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { ModalModule } from 'ng2-bootstrap';
 
 import { NoteService } from '../../services/note-service';
 
@@ -11,7 +12,7 @@ import { NoteEditorComponent } from './note-editor/note-editor.component';
 import { filterTextPipe } from '../pipes/filterText.pipe';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, ModalModule.forRoot()],
   exports: [
     NoteListComponent,
     NoteEditComponent,
